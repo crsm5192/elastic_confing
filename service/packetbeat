@@ -1,0 +1,23 @@
+#!/bin/sh
+#chkconfig:2345 20 80
+PROGRAM=packetbeat
+PROGRAM_HOME=/data/elastic/$PROGRAM
+
+case "$1" in
+start)
+    $PROGRAM_HOME/$PROGRAM -c $PROGRAM_HOME/$PROGRAM.yml &
+    echo "$PROGRAM startup"
+    ;;  
+stop)
+    PID=`ps -aux |grep $PROGRAM_HOME|grep -v grep|awk '{print $2}'` 2>/dev/null
+    kill -9 $PID 1>/dev/null 2>&1
+    echo "$PROGRAM stopped"
+    ;;  
+restart)
+    PID=`ps -aux |grep $PROGRAM_HOME|grep -v grep|awk '{print $2}'` 2>/dev/null
+    kill -9 $PID 1>/dev/null 2>&1
+    echo "$PROGRAM stopped"
+    $PROGRAM_HOME/$PROGRAM -c $PROGRAM_HOME/$PROGRAM.yml &
+    echo "$PROGRAM startup"
+    ;;    
+esac

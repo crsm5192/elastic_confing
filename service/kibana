@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+KIBANA_HOME=/data/kibana
+KIBANA_LOG_DIR=$KIBANA_HOME/log
+KIBANA_LOG=$KIBANA_LOG_DIR/kibana.log
+mkdir -p $KIBANA_LOG_DIR
+
+case "$1" in
+  start)
+    cd $KIBANA_HOME
+    ./bin/kibana -l $KIBANA_LOG &
+    echo "kibana startup"
+    ;;
+  stop)
+    PID=`cat $KIBANA_HOME/kibana.pid` 2>/dev/null
+    kill -9 $PID >/dev/null 2>&1
+    echo "kibana stopped"
+    ;;
+  restart)
+    PID=`cat $KIBANA_HOME/kibana.pid` 2>/dev/null
+    kill -9 $PID >/dev/null 2>&1
+    echo "kibana stopped"
+    cd $KIBANA_HOME
+    ./bin/kibana -l $KIBANA_LOG &
+    echo "kibana start"
+    ;;
+esac
