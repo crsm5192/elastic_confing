@@ -1,0 +1,20 @@
+packetbeat.interfaces.device: any
+
+packetbeat.protocols:
+- type: http
+  ports: [80, 8080, 8000, 5000, 8002]
+- type: mysql
+  ports: [3306]
+  
+setup.template.settings:
+  index.number_of_shards: 3
+
+fields:
+  group: 人脸识别
+  server: 入口26.88
+fields_under_root: true
+output.elasticsearch:
+  hosts: ["host1:9200","host2:9200"]
+
+#output.logstash:
+  #hosts: ["host1:5044","host2:5044"]
