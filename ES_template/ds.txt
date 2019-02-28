@@ -1,0 +1,143 @@
+put /_template/ds_template
+{
+  "order": 0,
+  "index_patterns": "ds-*",
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "doc": {
+      "_source": {
+        "includes": [
+          "@timestamp",
+          "access_time",
+          "apiid",
+          "app",
+          "appid",
+          "ca_log_level",
+          "group",
+          "log_error_type",
+          "log_dataset",
+          "log_level",
+          "log_name",
+          "log_topic",
+          "message",
+          "method",
+          "mod",
+          "moduleid",
+          "org",
+          "orgid",
+          "tags",
+          "remote_ip",
+          "openid",
+          "requestid",
+          "server",
+          "serverid",
+          "user_agent",
+          "user_referer",
+          "mode",
+          "err",
+          "jgid"
+        ]
+      },
+      "dynamic": false,
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "access_time": {
+          "type": "date"
+        },
+        "apiid": {
+          "type": "keyword"
+        },
+        "app": {
+          "type": "keyword"
+        },
+        "appid": {
+          "type": "keyword"
+        },
+        "ca_log_level": {
+          "type": "keyword"
+        },
+        "group": {
+          "type": "keyword"
+        },
+        "log_error_type": {
+          "type": "keyword"
+        },
+        "log_dataset": {
+          "type": "keyword"
+        },
+        "log_level": {
+          "type": "keyword"
+        },
+        "log_name": {
+          "type": "keyword"
+        },
+        "log_topic": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "keyword"
+        },
+        "method": {
+          "type": "keyword"
+        },
+        "mod": {
+          "type": "keyword"
+        },
+        "moduleid": {
+          "type": "keyword"
+        },
+        "org": {
+          "type": "keyword"
+        },
+        "orgid": {
+          "type": "keyword"
+        },
+        "tags": {
+          "type": "text"
+        },
+        "remote_ip": {
+          "type": "ip"
+        },
+        "openid": {
+          "type": "keyword"
+        },
+        "requestid": {
+          "type": "keyword"
+        },
+        "server": {
+          "type": "keyword"
+        },
+        "serverid": {
+          "type": "keyword"
+        },
+        "user_agent": {
+          "type": "text"
+        },
+        "user_referer": {
+          "type": "text"
+        },
+        "mode": {
+          "type": "keyword"
+        },
+        "err": {
+          "type": "text"
+        },
+        "jgid": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+
+
+DELETE /_template/ds_template
+
+GET /_template/ds_template

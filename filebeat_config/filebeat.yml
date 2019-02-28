@@ -1,0 +1,62 @@
+filebeat.prospectors:
+###########################>>>nginx_access<<<###########################
+- type: log
+  paths:
+    - /home/plat/nginx/logs/access.log
+  encoding: utf-8
+  fields:
+    logtype: nginx_access_log
+    group: BI后台
+    server: 入口26.78
+  fields_under_root: true
+###########################>>>nginx_error<<<###########################
+- type: log
+  paths:
+    - /home/plat/nginx/logs/error.log
+  encoding: utf-8
+  fields:
+    logtype: nginx_error_log
+    group: BI后台
+    server: 入口26.78
+  fields_under_root: true
+###########################>>>tomcat<<<###############################
+- type: log
+paths:
+   - /home/plat/dscore/logs/catalina.out
+  encoding: utf-8
+  multiline:
+    pattern: '^[0-2][0-9]:[0-5][0-9]:[0-5][0-9]|^>>'
+    negate: true
+    match: after
+  fields:
+    logtype: tomcat_log
+    group: BI后台
+    server: 入口26.78
+  fields_under_root: true
+###############################>>>ds<<<###############################
+- type: log
+  paths:
+    - /home/plat/ds-log/ds.log
+  encoding: utf-8
+  multiline:
+    pattern: '^[0-2][0-9]:[0-5][0-9]:[0-5][0-9]|^>>'
+    negate: true
+    match: after
+  fields:
+    logtype: ds_log
+    group: BI后台
+    server: 入口26.78
+  fields_under_root: true
+###########################>>>squid<<<###############################
+- type: log
+  paths:
+    - /var/log/squid/access.log
+  encoding: utf-8
+  fields:
+    logtype: squid_log
+    group: BI后台
+    server: 入口26.78
+  fields_under_root: true
+###########################>>>output<<<###############################
+output.logstash:
+  hosts: ["host1:5044","host2:5044"]

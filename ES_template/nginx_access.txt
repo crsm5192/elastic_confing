@@ -1,0 +1,160 @@
+
+put /_template/nginx_access_template
+{
+  "order": 0,
+  "index_patterns": "nginx_access-*",
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "doc": {
+      "_source": {
+        "includes": [
+          "@timestamp",
+          "app",
+          "jgid",
+          "mod",
+          "group",
+          "server",
+          "org",
+          "up_request_time",
+          "up_response_status",
+          "up_response_time",
+          "upstream_server",
+          "status",
+          "requestid",
+          "request_status",
+          "request_method",
+          "request_bytes",
+          "request_api",
+          "request_agent",
+          "remote_ip",
+          "referer",
+          "openid",
+          "operID",
+          "operId",
+          "order",
+          "organization_code",
+          "cardType",
+          "cardNo",
+          "api",
+          "request_url",
+          "request_args",
+          "message",
+          "tags",
+          "plat_request_id"
+        ]
+      },
+      "dynamic": false,
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "app": {
+          "type": "keyword"
+        },
+        "jgid": {
+          "type": "keyword"
+        },
+        "mod": {
+          "type": "keyword"
+        },
+        "group": {
+          "type": "keyword"
+        },
+        "server": {
+          "type": "keyword"
+        },
+        "org": {
+          "type": "keyword"
+        },
+        "up_request_time": {
+          "type": "float"
+        },
+        "up_response_status": {
+          "type": "keyword"
+        },
+        "up_response_time": {
+          "type": "float"
+        },
+        "upstream_server": {
+          "type": "text"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "requestid": {
+          "type": "keyword"
+        },
+        "request_status": {
+          "type": "keyword"
+        },
+        "request_method": {
+          "type": "keyword"
+        },
+        "request_bytes": {
+          "type": "float"
+        },
+        "request_api": {
+          "type": "text"
+        },
+        "request_agent": {
+          "type": "text"
+        },
+        "remote_ip": {
+          "type": "ip"
+        },
+        "referer": {
+          "type": "text"
+        },
+        "openid": {
+          "type": "keyword"
+        },
+        "operID": {
+          "type": "keyword"
+        },
+        "operId": {
+          "type": "keyword"
+        },
+        "order": {
+          "type": "keyword"
+        },
+        "organization_code": {
+          "type": "keyword"
+        },
+        "cardType": {
+          "type": "keyword"
+        },
+        "cardNo": {
+          "type": "keyword"
+        },
+        "api": {
+          "type": "keyword"
+        },
+        "request_url": {
+          "type": "text"
+        },
+        "request_args": {
+          "type": "text"
+        },
+        "message": {
+          "type": "text"
+        },
+        "tags": {
+          "type": "text"
+        },
+        "plat_request_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+
+
+delete /_template/nginx_access_template
+
+get /_template/nginx_access_template
